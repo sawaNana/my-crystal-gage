@@ -8,10 +8,16 @@ const beastApp = new Vue({
     currentServer: 1,
     currentArea: 'ゲル',
     currentColor: '青',
+    localStorageKey: 'servers',
     moment: moment,
     error: ''
   },
   created: function() {
+    const lastServers = localStorage.getItem(this.localStorageKey);
+    if (lastServers) {
+      this.loadServers(JSON.parse(lastServers));
+      return;
+    }
   	this.initialize();
   },
   methods: {
@@ -27,6 +33,9 @@ const beastApp = new Vue({
         this.servers.push(server);
       }
     },
+    loadServers: function(lastServers) {
+      this.servers = lastServers;
+    },
   	push: function() {
     	if (!this.validate()) {
       	return;
@@ -36,18 +45,22 @@ const beastApp = new Vue({
         ].times.push(
       		{ time: new Date(), color: this.currentColor }
       	);
+      this.save();
     },
     pop: function() {
     	if (!this.validate()) {
       	return;
       }
-    	return this.servers[this.currentServer - 1][
+    	const removedServer = this.servers[this.currentServer - 1][
       		this.areaNames.indexOf(this.currentArea)
         ].times.pop();
+      this.save();
+      return removedServer;
     },
     clear: function() {
     	this.servers.length = 0;
       this.initialize();
+      this.save();
     },
     validate: function() {
     	this.error = '';
@@ -56,6 +69,9 @@ const beastApp = new Vue({
         return false;
       }
       return true;
+    },
+    save: function() {
+      localStorage.setItem(this.localStorageKey, JSON.stringify(this.servers));
     }
   }
 });
