@@ -4,8 +4,20 @@ body {
   font-family: monospace;
   font-size: 1em;
 }
-
-#beast-app {
+@media screen and (max-width:460px) { 
+  body {
+    padding-top: 11rem;
+  }
+}
+@media screen and (min-width: 461px) and (max-width:580px) { 
+  body {
+    padding-top: 8rem;
+  }
+}
+@media screen and (min-width: 581px) { 
+  body {
+    padding-top: 5rem;
+  }
 }
 
 .error-messages {
