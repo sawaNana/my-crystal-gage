@@ -59,11 +59,13 @@
             <table class="areas">
               <tr class="area" v-for="area in server">
                 <th>{{ area.name }}</th>
-                  <td v-for="time in area.times" v-bind:class="time.color">
-                    <div class="time">
-                      {{ time.color }}
-                      {{ moment(time.time).format('hh:mm') }}
-                    </div> 
+                  <td>
+                    <ul>
+                      <li class="time" v-for="time in area.times" v-bind:class="time.color">
+                        {{ time.color }}
+                        {{ moment(time.time).format('hh:mm') }}
+                      </li>
+                    </ul>
                   </td>
               </tr>
             </table>  
