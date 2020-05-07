@@ -1,0 +1,111 @@
+@charset "utf-8";
+body {
+  background: #20262E;
+  font-family: monospace;
+}
+
+#beast-app {
+  background: #fafafa;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+#top {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  background-color: #223;
+  color: #889;
+}
+
+h2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+.error-message {
+  background-color: #f00;
+  color: #fff;
+  border-radius: 2px;
+}
+.debug {
+  background: #333;
+  color: #aaa;
+  padding: 1em;
+}
+
+#inputs {
+  padding: 1em 0;
+  height: 2em;
+}
+
+#inputs > * {
+  display: inline-block;
+  height: 100%;
+}
+button {
+  background-color: #b5bbc5;
+  border: none;
+}
+button:hover {
+  background-color: #9ca1a9;
+}
+#option-buttons {
+  height: 2em;
+  margin: 0.5em 0 0 2em;
+}
+#option-buttons > button {
+  height: 100%;
+}
+#server-number {
+  width: 4em;
+}
+
+.servers {
+  margin-top: 20ex;
+  font-family: monospace;
+  border-collapse: collapse;
+}
+
+.server:nth-child(even) {
+  background-color: #eaeaea;
+}
+
+.server-number {
+  color: #999;
+  font-weight: bold;
+  font-size: 1.5em;
+  text-align: right;
+  padding: 0 8px;
+  border: 0 solid #ccc;
+  border-top-width: 1px;
+}
+.area > th, .area > td {
+  padding: 0.2em 1px;
+  border: 0 solid #ccc;
+  border-top-width: 1px;
+}
+.time {
+  border-radius: 2px;
+}
+.青 > .time {
+  background-color: #8ebdf9;
+}
+.黄 > .time {
+  background-color: #f7e486;
+}
+.赤 > .time {
+  background-color: #faa;
+}
+.虹 > .time {
+  background-color: #de64ec;
+}
+.青 + .黄 > .time{
+  background-color: #da7d2d;
+  color: #fff;
+}
+.黄 + .赤 > .time{
+  background-color: #f35a5a;
+  color: #fff;
+}
