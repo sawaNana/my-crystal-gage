@@ -51,26 +51,33 @@
           </div>
       </nav>
       <div class="container-fluid">
-        <table class="servers">
-          <tr class="server" v-for="(server, index) in servers">
-            <th class="server-number">{{ index + 1 }}</th>
-            <td>
-              <table class="areas">
-                <tr class="area" v-for="area in server">
-                  <th>{{ area.name }}</th>
-                    <td>
-                      <ul>
-                        <li class="time" v-for="time in area.times" v-bind:class="time.color">
-                          {{ time.color }}
-                          {{ moment(time.time).format('hh:mm') }}
-                        </li>
-                      </ul>
-                    </td>
-                </tr>
-              </table>  
-            </td>
-          </tr>
-        </table>
+        <div class="row">
+          <div class="col-md-12">
+            <table class="servers">
+              <tr class="server" v-for="(server, index) in servers">
+                <th class="server-number">{{ index + 1 }}</th>
+                <td>
+                  <table class="areas">
+                    <tr class="area" v-for="area in server">
+                      <th>{{ area.name }}</th>
+                      <td>
+                        <ul>
+                          <li class="time" v-for="time in area.times" v-bind:class="time.color">
+                            {{ time.color }}
+                            {{ moment(time.time).format('hh:mm') }}
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </table>  
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div id="option-menu">
+          <button type="button" class="btn btn-info">連続した時刻を整理</button>
+        </div>
       </div>
     </main>
 

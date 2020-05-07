@@ -49,12 +49,18 @@ body {
   font-size: 1.5em;
   text-align: right;
   padding: 0 8px;
+  border: none;
+}
+.server {
   border: 0 solid #ccc;
   border-top-width: 1px;
 }
-.area > th, .area > td {
+.area {
   border: 0 solid #ccc;
   border-top-width: 1px;
+}
+.area:first-child {
+  border: none;
 }
 .area > th {
   padding: 0.2em 0.5em;
@@ -87,3 +93,10 @@ body {
 .黄 + .赤 {
   border:2px solid #f35a5a;
 }
+/*
+#option-menu {
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+*/
