@@ -1,69 +1,28 @@
 @charset "utf-8";
 body {
-  background: #20262E;
+  padding-top: 5rem;
   font-family: monospace;
+  font-size: 1em;
 }
 
 #beast-app {
-  background: #fafafa;
-  border-radius: 4px;
-  transition: all 0.2s;
 }
 
-#top {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  padding: 20px;
-  background-color: #223;
-  color: #889;
-}
-
-h2 {
-  font-size: 1.5em;
-  font-weight: bold;
-}
 .error-message {
   background-color: #f00;
   color: #fff;
   border-radius: 2px;
 }
-.debug {
-  background: #333;
-  color: #aaa;
-  padding: 1em;
-}
-
-#inputs {
-  padding: 1em 0;
-  height: 2em;
-}
-
-#inputs > * {
-  display: inline-block;
-  height: 100%;
-}
-button {
-  background-color: #b5bbc5;
-  border: none;
-}
-button:hover {
-  background-color: #9ca1a9;
-}
-#option-buttons {
-  height: 2em;
-  margin: 0.5em 0 0 2em;
-}
-#option-buttons > button {
-  height: 100%;
-}
 #server-number {
-  width: 4em;
+  width: 5em;
+  text-align: right;
+}
+#remove-button {
+  margin-left: 2em;
 }
 
 .servers {
-  margin-top: 20ex;
+  margin-top: 1em;
   font-family: monospace;
   border-collapse: collapse;
 }
