@@ -51,7 +51,7 @@ const beastApp = new Vue({
     },
     validate: function() {
     	this.error = '';
-    	if (this.currentServer <= 0 || this.currentServer >= this.numServer) {
+    	if (this.currentServer <= 0 || this.currentServer > this.numServer) {
       	this.error = `サーバー番号は1から${this.numServer}で指定してください。`;
         return false;
       }
