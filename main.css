@@ -8,10 +8,9 @@ body {
 #beast-app {
 }
 
-.error-message {
-  background-color: #f00;
-  color: #fff;
-  border-radius: 2px;
+.error-messages {
+  color: #eaa8a8;
+  padding-left: 1em;
 }
 #server-number {
   width: 5em;
