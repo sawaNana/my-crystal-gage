@@ -93,10 +93,9 @@ body {
 .黄 + .赤 {
   border:2px solid #f35a5a;
 }
-/*
 #option-menu {
-  position: fixed;
-  top: 0;
-  right: 0;
+  background-color: #eee;
+  border-radius:  4px;
+  margin: 1em 0;
+  padding: 1em;
 }
-*/

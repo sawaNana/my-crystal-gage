@@ -18,7 +18,10 @@ const beastApp = new Vue({
       this.loadServers(JSON.parse(lastServers));
       return;
     }
-  	this.initialize();
+    this.initialize();
+  },
+  mounted: function() {
+    feather.replace();
   },
   methods: {
   	initialize: function() {
@@ -62,6 +65,8 @@ const beastApp = new Vue({
       this.initialize();
       this.save();
     },
+    clean: function() {
+    },
     validate: function() {
     	this.error = '';
     	if (this.currentServer <= 0 || this.currentServer > this.numServer) {
@@ -72,6 +77,11 @@ const beastApp = new Vue({
     },
     save: function() {
       localStorage.setItem(this.localStorageKey, JSON.stringify(this.servers));
+    },
+    gotoOptionControls: function() {
+      const element = document.documentElement;
+      const bottom = element.scrollHeight - element.clientHeight;
+      $('html, body').animate({scrollTop: bottom});
     }
   }
 });
