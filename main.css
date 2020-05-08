@@ -10,15 +10,18 @@ body {
     padding-top: 11rem;
   }
 }
-@media screen and (min-width: 461px) and (max-width:580px) { 
-  body {
-    padding-top: 8rem;
-  }
-}
-@media screen and (min-width: 581px) { 
+@media screen and (min-width: 406px) and (max-width:542px) { 
   body {
     padding-top: 5rem;
   }
+}
+@media screen and (min-width: 543px) { 
+  body {
+    padding-top: 3rem;
+  }
+}
+nav .form-group {
+  margin: 0;
 }
 
 .error-messages {
@@ -30,17 +33,18 @@ body {
   text-align: right;
 }
 #remove-button {
-  margin-left: 2em;
+  margin-left: 1.5em;
 }
 
 .servers {
-  margin-top: 1em;
+  margin: 1em 0;
   border-collapse: collapse;
   font-size: 0.8em;
+  width: 100%;
 }
 
 .server:nth-child(even) {
-  background-color: #eaeaea;
+  background-color: #f2f3f1;
 }
 
 .server-number {
@@ -50,13 +54,20 @@ body {
   text-align: right;
   padding: 0 8px;
   border: none;
+  width: 3em;
+}
+#option-menu-button {
+  padding: 2px;
+}
+#option-menu-button svg {
+  width: 1.5em; 
 }
 .server {
-  border: 0 solid #ccc;
+  border: 0 solid #e4e4e2;
   border-top-width: 1px;
 }
 .area {
-  border: 0 solid #ccc;
+  border: 0 solid #e4e4e2;
   border-top-width: 1px;
 }
 .area:first-child {
@@ -71,9 +82,10 @@ body {
   padding-left: 0;
 }
 .time {
-  padding: 0.2em 1px;
-  border-radius: 2px;
+  padding: 0.2em 0.4em;
+  border-radius: 4px;
   display: inline-block;
+  font-weight: bold;
 }
 .青{
   background-color: #8ebdf9;
@@ -85,17 +97,13 @@ body {
   background-color: #faa;
 }
 .虹{
-  background-color: #de64ec;
+  background: linear-gradient(217deg, rgba(255,0,0,.3), rgba(255,0,0,0) 70.71%),
+              linear-gradient(127deg, rgba(0,255,0,.3), rgba(0,255,0,0) 70.71%),
+              linear-gradient(336deg, rgba(0,0,255,.3), rgba(0,0,255,0) 70.71%);
 }
 .青 + .黄 {
   border: 2px solid #da7d2d;
 }
 .黄 + .赤 {
   border:2px solid #f35a5a;
-}
-#option-menu {
-  background-color: #eee;
-  border-radius:  4px;
-  margin: 1em 0;
-  padding: 1em;
 }

@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-      <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/lumen/bootstrap.min.css" rel="stylesheet" integrity="sha384-715VMUUaOfZR3/rWXZJ9agJ/udwSXGEigabzUbJm2NR4/v5wpDy8c14yedZN6NL7" crossorigin="anonymous">
+      <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.4.1/sandstone/bootstrap.min.css" rel="stylesheet" integrity="sha384-ABdnjefqVzESm+f9z9hcqx2cvwvDNjfrwfW5Le9138qHCMGlNmWawyn/tt4jR4ba" crossorigin="anonymous">
       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
       <link href="main.css" rel="stylesheet">
     <title>私の輝晶獣メモ</title>
   </head>
   <body>
     <main role="main" id="beast-app">
-      <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+      <nav class="navbar bg-primary navbar-expand-md navbar-dark fixed-top">
         <a class="navbar-brand" href="#">私の輝晶獣メモ</a>
-          <form class="form-inline">
+          <div class="navbar-nav mr-auto">
+            <form class="form-inline">
               <div class="form-group md-1">
                 <input type="number" id="server-number" class="form-control" v-model="currentServer" onfocus="this.select()">
               </div>
@@ -39,57 +40,58 @@
                     削除
                   </button>:
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
           <div class="error-messages">
             {{ error }}
           </div>
           <div class="navbar-nav ml-auto">
-            <button type="button" class="btn btn-dark" v-on:click="gotoOptionControls" title="その他の操作">
+            <button type="button" id="option-menu-button" class="btn btn-dark" v-on:click="gotoOptionControls" title="その他の操作">
               <i data-feather="settings"></i>
             </button>
           </div>
       </nav>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-md-12">
-            <table class="servers">
-              <tr class="server" v-for="(server, index) in servers">
-                <th class="server-number">{{ index + 1 }}</th>
+      <table class="servers">
+        <tr class="server" v-for="(server, index) in servers">
+          <th class="server-number">{{ index + 1 }}</th>
+          <td>
+            <table class="areas">
+              <tr class="area" v-for="area in server">
+                <th>{{ area.name }}</th>
                 <td>
-                  <table class="areas">
-                    <tr class="area" v-for="area in server">
-                      <th>{{ area.name }}</th>
-                      <td>
-                        <ul>
-                          <li class="time" v-for="time in area.times" v-bind:class="time.color">
-                            {{ time.color }}
-                            {{ moment(time.time).format('hh:mm') }}
-                          </li>
-                        </ul>
-                      </td>
-                    </tr>
-                  </table>  
+                  <ul>
+                    <li class="time" v-for="time in area.times" v-bind:class="time.color">
+                      {{ moment(time.time).format('hh:mm') }}
+                    </li>
+                  </ul>
                 </td>
               </tr>
-            </table>
-          </div>
-        </div>
+            </table>  
+          </td>
+        </tr>
+      </table>
+      <div class="container-fluid">
         <div id="option-menu" class="row">
           <div class="col-md-12">
-            <h3>その他の操作</h3>
-            <form>
-              <div class="form-group md-1">
-                <button type="button" v-on:click="clean" class="btn btn-info col-md-4">
-                  連続した時刻を整理
-                </button>
+            <div class="card text-white bg-primary mb-6">
+              <div class="card-header">
+                その他の操作
               </div>
-              <div class="form-group md-1">
-                <button type="button"  v-on:click ="clear" class="btn btn-danger col-md-4">
-                  すべて削除
-                </button>
+              <div class="card-body">
+                <form>
+                  <div class="form-group md-1">
+                    <button type="button" v-on:click="clean" class="btn btn-info col-md-4">
+                      連続した時刻を整理
+                    </button>
+                  </div>
+                  <div class="form-group md-1">
+                    <button type="button"  v-on:click ="clear" class="btn btn-danger col-md-4">
+                      すべて削除
+                    </button>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
