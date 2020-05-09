@@ -1,7 +1,7 @@
 const beastApp = new Vue({
 	el: '#beast-app',
 	data: {
-  	numServer: 40,
+  	numServers: 40,
     areaNames: ['ゲル', 'バル', '砂漠'],
     colors:    ['青', '黄', '赤', '虹'],
   	servers:   [],
@@ -10,7 +10,8 @@ const beastApp = new Vue({
     currentColor: '青',
     localStorageKey: 'servers',
     moment: moment,
-    error: ''
+    error: '',
+    status: null
   },
   created: function() {
     const lastServers = localStorage.getItem(this.localStorageKey);
@@ -19,13 +20,14 @@ const beastApp = new Vue({
       return;
     }
     this.initialize();
+    this.status = new CrystalGageStatus(this.numServers, this.areaNames, this.colors);
   },
   mounted: function() {
     feather.replace();
   },
   methods: {
   	initialize: function() {
-      for (let i = 0; i < this.numServer; i++) {
+      for (let i = 0; i < this.numServers; i++) {
         const server = [];
         for (let j = 0; j < this.areaNames.length; j++) {
           server.push({
@@ -47,7 +49,7 @@ const beastApp = new Vue({
       		this.areaNames.indexOf(this.currentArea)
         ].times.push(
       		{ time: new Date(), color: this.currentColor }
-      	);
+        );
       this.save();
     },
     pop: function() {
@@ -67,7 +69,7 @@ const beastApp = new Vue({
     },
     clean: function() {
       const numArea = this.areaNames.length;
-      for (let server = 0; server < this.numServer; server++) {
+      for (let server = 0; server < this.numServers; server++) {
         for (let area = 0; area < numArea; area++) {
           this.cleanRecord(this.servers[server][area]);
         }
@@ -103,8 +105,8 @@ const beastApp = new Vue({
     },
     validate: function() {
     	this.error = '';
-    	if (this.currentServer <= 0 || this.currentServer > this.numServer) {
-      	this.error = `サーバー番号は1から${this.numServer}で指定してください。`;
+    	if (this.currentServer <= 0 || this.currentServer > this.numServers) {
+      	this.error = `サーバー番号は1から${this.numServers}で指定してください。`;
         return false;
       }
       return true;
