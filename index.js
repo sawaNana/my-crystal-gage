@@ -14,94 +14,44 @@ const beastApp = new Vue({
     status: null
   },
   created: function() {
+    this.status = new CrystalGageStatus(this.numServers, this.areaNames, this.colors);
     const lastServers = localStorage.getItem(this.localStorageKey);
     if (lastServers) {
-      this.loadServers(JSON.parse(lastServers));
+      this.status.loadServers(JSON.parse(lastServers));
+      this.servers = this.status.servers
       return;
     }
-    this.initialize();
-    this.status = new CrystalGageStatus(this.numServers, this.areaNames, this.colors);
+    this.status.initialize();
+    this.servers = this.status.servers;
   },
   mounted: function() {
     feather.replace();
   },
   methods: {
-  	initialize: function() {
-      for (let i = 0; i < this.numServers; i++) {
-        const server = [];
-        for (let j = 0; j < this.areaNames.length; j++) {
-          server.push({
-            name: this.areaNames[j],
-            times: []
-          });
-        }
-        this.servers.push(server);
-      }
-    },
-    loadServers: function(lastServers) {
-      this.servers = lastServers;
-    },
   	push: function() {
     	if (!this.validate()) {
       	return;
       }
-    	this.servers[this.currentServer - 1][
-      		this.areaNames.indexOf(this.currentArea)
-        ].times.push(
-      		{ time: new Date(), color: this.currentColor }
-        );
+      this.status.push(this.currentServer, this.currentArea, this.currentColor);
       this.save();
     },
     pop: function() {
     	if (!this.validate()) {
       	return;
       }
-    	const removedServer = this.servers[this.currentServer - 1][
-      		this.areaNames.indexOf(this.currentArea)
-        ].times.pop();
+    	const removedServer = this.status.pop(
+        this.currentServer, this.currentArea
+      );
       this.save();
       return removedServer;
     },
     clear: function() {
-    	this.servers.length = 0;
-      this.initialize();
+      this.status.clear();
       this.save();
     },
     clean: function() {
-      const numArea = this.areaNames.length;
-      for (let server = 0; server < this.numServers; server++) {
-        for (let area = 0; area < numArea; area++) {
-          this.cleanRecord(this.servers[server][area]);
-        }
-      }
+      this.status.clean();
       this.save();
-    },
-    cleanRecord: function(area) {
-      let numRecord = area.times.length;
-      if (numRecord < 2) {
-        return;
-      }
-      const records = area.times;
-      let lastStatus = records[0].color;
-      let startIndex = 0;
-      let statusCount = 0;
-      for(let i = 1; i < numRecord; i++) {
-        console.log(records[i].color);
-        if (records[i].color === lastStatus) {
-          statusCount++;
-          continue;
-        }
-        if (statusCount > 2) {
-          records.splice(startIndex + 1, statusCount - 1)
-          numRecord = numRecord - statusCount + 1;
-          i = i - statusCount + 1;
-        }
-        lastStatus = records[i].color
-        statusCount = 0;
-        startIndex = i;
-      }
-      records.splice(startIndex + 1, statusCount - 1)
-      numRecord = numRecord - statusCount + 1;
     },
     validate: function() {
     	this.error = '';

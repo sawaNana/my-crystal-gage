@@ -20,9 +20,6 @@ class CrystalGageStatus {
   loadServers(newServers) {
     this.servers = newServers;
   }
-  get servers() {
-    return this.servers;
-  }
   push(serverNumber, areaName, color) {
     this.servers[serverNumber - 1][
         this.areaNames.indexOf(areaName)
@@ -57,7 +54,6 @@ class CrystalGageStatus {
     let startIndex = 0;
     let statusCount = 0;
     for(let i = 1; i < numRecord; i++) {
-      console.log(records[i].color);
       if (records[i].color === lastStatus) {
         statusCount++;
         continue;
