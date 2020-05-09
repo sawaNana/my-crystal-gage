@@ -99,8 +99,6 @@ const beastApp = new Vue({
         startIndex = i;
       }
       records.splice(startIndex + 1, statusCount - 1)
-      console.log('startIndex: ' + startIndex);
-      console.log('statusCount: ' + statusCount);
       numRecord = numRecord - statusCount + 1;
     },
     validate: function() {
