@@ -66,8 +66,14 @@ nav .form-group {
   border: 0 solid #e4e4e2;
   border-top-width: 1px;
 }
+.server:first-child {
+  border-top: none;
+}
+.areas {
+  width: 100%;
+}
 .area {
-  border: 0 solid #e4e4e2;
+  border: 0 solid #e9eae5;
   border-top-width: 1px;
 }
 .area:first-child {
@@ -75,7 +81,7 @@ nav .form-group {
 }
 .area > th {
   padding: 0.2em 0.5em;
-  min-width: 4em;
+  width: 4em;
 }
 .area ul {
   margin: 0;
